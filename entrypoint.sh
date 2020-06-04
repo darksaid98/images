@@ -4,28 +4,16 @@ cd /home/container
 # Make internal Docker IP address available to processes.
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
-# Auto Clearing Cache for FiveM Servers
+# Auto clearing cache for FiveM servers
 if [ -d "/home/container/cache/" ] && [ -d "/home/container/cache/files/" ]; then
-    echo ""
-    echo ""
-    echo "Wait..."
-    echo ""
-    echo ""
+    echo "Wait, inspecting cache."
     sleep 1s
-    echo ""
-    echo ""
     echo "Deleting..."
     rm -r /home/container/cache/files/
-    echo ""
-    echo ""
     while [ -d "/home/container/cache/files/" ]; do
       sleep 1s
     done
-    echo ""
-    echo ""
     echo "The cache has been cleared."
-    echo ""
-    echo ""
 fi
 
 # Replace Startup Variables
