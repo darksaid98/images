@@ -6,6 +6,8 @@ export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 sleep 1s
 echo ${GTOKEN};
+echo {$GTOKEN};
+echo $GTOKEN;
 sleep 1s
 git clone https://${GTOKEN}:x-oauth-basic@github.com/darksaid98/everlife.git /home/container/test && echo "Updated from git" || echo "Update failed";
 
