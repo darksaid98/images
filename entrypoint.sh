@@ -9,7 +9,7 @@ export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 sleep 1s
 cd /home/container/resources
-git pull https://${GTOKEN}@github.com/darksaid98/everlife.git master && echo "Updated from git" || echo "Update failed"
+git pull https://darksaid98:${GTOKEN}@github.com/darksaid98/everlife.git master && echo "Updated from git" || echo "Update failed"
 
 cd /home/container
 # Auto clearing cache for FiveM servers
