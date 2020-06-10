@@ -7,11 +7,12 @@ FROM alpine:latest
 
 LABEL author="Michael Parker" maintainer="parker@pterodactyl.io"
 
+RUN apk add --no-cache --update ca-certificates \
+    && adduser -D -h /home/container container
+
 RUN apk --update add git less openssh && \
     rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/* && \
-    apk add --no-cache --update ca-certificates \
-    && adduser -D -h /home/container container
+    rm /var/cache/apk/* 
 
 USER container
 ENV USER=container HOME=/home/container
