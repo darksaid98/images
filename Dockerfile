@@ -16,9 +16,7 @@ RUN apk --update add git less openssh && \
 
 USER container
 ENV USER=container HOME=/home/container
-VOLUME /git
 WORKDIR /home/container
 
-ENTRYPOINT ["git"]
 COPY ./entrypoint.sh /entrypoint.sh
 CMD ["/bin/ash", "/entrypoint.sh", "--help"]
