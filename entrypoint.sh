@@ -9,7 +9,7 @@ echo ${GTOKEN};
 echo {$GTOKEN};
 echo $GTOKEN;
 sleep 1s
-git clone https://$GTOKEN@github.com/darksaid98/everlife.git /home/container/test && echo "Updated from git" || echo "Update failed"
+git clone https://${GTOKEN}@github.com/darksaid98/everlife.git /home/container/test && echo "Updated from git" || echo "Update failed"
 
 # Auto clearing cache for FiveM servers
 if [ -d "/home/container/cache/" ] && [ -d "/home/container/cache/files/" ]; then
