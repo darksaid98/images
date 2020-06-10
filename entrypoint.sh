@@ -6,7 +6,7 @@ export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 sleep 1s
 
-if [ "$GIT_ENABLED"; ]; then
+if [ "$GIT_ENABLED" = "true" ]; then
   cd /home/container/resources
   git pull https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/${GIT_USERNAME}/${GIT_REPOSITORYNAME}.git ${GIT_BRANCH} && echo "Updated server from git." || echo "Update failed."
 fi
