@@ -5,7 +5,7 @@ cd /home/container
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 echo "Updating from git...";
-git pull git@github.com:darksaid98/everlife.git /home/container/resources && echo "Updated from git" || echo "Update failed"
+git clone git@github.com:darksaid98/everlife.git /home/container/resources && echo "Updated from git" || echo "Update failed"
 
 # Auto clearing cache for FiveM servers
 if [ -d "/home/container/cache/" ] && [ -d "/home/container/cache/files/" ]; then
