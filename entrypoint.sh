@@ -4,12 +4,12 @@ cd /home/container
 # Make internal Docker IP address available to processes.
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
-#git config user.name "darksaid98"
-#git config user.email "darksaid9889@gmail.com"
-
 sleep 1s
-cd /home/container/resources
-git pull https://darksaid98:${GTOKEN}@github.com/darksaid98/everlife.git master && echo "Updated from git" || echo "Update failed"
+
+if [ "$GIT_ENABLED"; ]; then
+  cd /home/container/resources
+  git pull https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/${GIT_USERNAME}/${GIT_REPOSITORYNAME}.git ${GIT_BRANCH} && echo "Updated server from git." || echo "Update failed."
+fi
 
 cd /home/container
 # Auto clearing cache for FiveM servers
