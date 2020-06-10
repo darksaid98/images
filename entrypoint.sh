@@ -10,8 +10,6 @@ if [ "$GIT_ENABLED" = "true" ]; then
   echo "Wait, preparing to update.";
   sleep 1s
   cd /home/container/resources
-  git fetch --all
-  git reset --hard origin/${GIT_BRANCH}
   git pull https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/${GIT_USERNAME}/${GIT_REPOSITORYNAME}.git ${GIT_BRANCH} && echo "Updated server from git." || echo "Update failed."
   cd /home/container
 fi
