@@ -4,6 +4,9 @@ cd /home/container
 # Make internal Docker IP address available to processes.
 export INTERNAL_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
+git pull git@github.com:darksaid98/everlife.git /home/container/resources
+echo "Updating from git..."
+
 # Auto clearing cache for FiveM servers
 if [ -d "/home/container/cache/" ] && [ -d "/home/container/cache/files/" ]; then
     echo "Wait, inspecting cache."
