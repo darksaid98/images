@@ -7,7 +7,7 @@ FROM        alpine:latest
 
 LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
-RUN         apk add --no-cache --update bash git openssh-client rsync ca-certificates \
+RUN         apk add --no-cache --update bash git openssh-client rsync ca-certificates musl libgcc libstdc++  \
             && adduser -D -h /home/container container
 
 RUN         apk update && apk upgrade && \
