@@ -1,21 +1,27 @@
 # ----------------------------------
-# Environment: ubuntu
+# Environment: debian:buster-slim
 # Minimum Panel Version: 0.7.X
 # ----------------------------------
-FROM        debian:stable-slim
+FROM debian:buster-slim
 
-LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
+LABEL author="Michael Parker" maintainer="parker@pterodactyl.io"
 
-ENV         DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN         apt update -y \
-            && apt upgrade \
-            && apt install -y zip unzip wget curl iproute2 libatomic1 libsdl2-2.0-0 binutils xz-utils libfontconfig liblzo2-2 libicu63 youtube-dl ffmpeg libunwind8 icu-devtools libssl-dev lib32gcc1 sqlite3 libsqlite3-dev \
-            && useradd -d /home/container -m container
+## add container user
+RUN useradd -m -d /home/container -s /bin/bash container
 
-USER        container
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+## update base packages
+RUN apt update \
+    && apt upgrade -y
 
-COPY        ./entrypoint.sh /entrypoint.sh
+## install dependencies
+RUN apt install -y gcc g++ libgcc1 lib32gcc1 gdb libc6 git wget curl tar zip unzip binutils xz-utils liblzo2-2 cabextract iproute2 net-tools netcat telnet libatomic1 libsdl1.2debian libsdl2-2.0-0 \
+    libfontconfig libicu63 icu-devtools libunwind8 libssl-dev sqlite3 libsqlite3-dev libmariadbclient-dev libduktape203 locales ffmpeg gnupg2 apt-transport-https software-properties-common ca-certificates tzdata
+
+## configure locale
+RUN update-locale lang=en_US.UTF-8 \
+    && dpkg-reconfigure --frontend noninteractive locales
+
+COPY ./entrypoint.sh /entrypoint.sh
 CMD ["/bin/bash", "/entrypoint.sh"]
